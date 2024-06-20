@@ -99,4 +99,9 @@ in
         fade = true;
         fadeSteps = [0.07 0.07];
     };
+
+    programs.gpg.enable = true;
+    services.gpg-agent.enable = true;
+    services.gpg-agent.defaultCacheTtl = 3000;
+    services.gpg-agent.pinentryPackage = pkgs.pinentry-gtk2;
 }

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 tmpfile=$(mktemp)
 xsel -b > $tmpfile
 pandoc -f markdown -t markdown --wrap=none $tmpfile | xsel -b

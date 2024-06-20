@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 sudo block-site whatsapp.com web.whatsapp.com\
     linkedin.com www.linkedin.com\

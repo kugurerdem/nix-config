@@ -107,6 +107,7 @@ in
     services.gpg-agent.defaultCacheTtl = 3000;
     services.gpg-agent.pinentryPackage = pkgs.pinentry-gtk2;
 
+    home.sessionPath = [ "$HOME/.local/bin" ];
     home.file.".local/bin" = {
         source = ./dotfiles/.local/bin;
         recursive = true;

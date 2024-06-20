@@ -56,6 +56,8 @@ in
             # Shell utilities
             autojump
             lf
+
+            pass
         ];
 
         file.".inputrc".source = ./dotfiles/.inputrc;
@@ -104,4 +106,10 @@ in
     services.gpg-agent.enable = true;
     services.gpg-agent.defaultCacheTtl = 3000;
     services.gpg-agent.pinentryPackage = pkgs.pinentry-gtk2;
+
+    home.file.".local/bin" = {
+        source = ./dotfiles/.local/bin;
+        recursive = true;
+        executable = true;
+    };
 }

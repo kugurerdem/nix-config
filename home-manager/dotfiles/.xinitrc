@@ -1,0 +1,4 @@
+dwmblocks &
+picom &
+
+exec dwm

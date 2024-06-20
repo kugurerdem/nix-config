@@ -1,0 +1,20 @@
+[user]
+    name = kugurerdem
+    email = k.ugurerdem@gmail.com
+    signingkey = 
+
+[alias]
+    a     = add
+    d     = diff
+    dc    = diff --cached
+    s     = status -s
+    ss    = status
+    cm    = commit
+    b     = branch
+    co    = checkout
+    l     = log
+    ls    = log --show-signature
+
+[merge]
+    tool = vimdiff
+

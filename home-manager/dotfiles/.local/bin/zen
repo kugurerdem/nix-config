@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+sudo block-site whatsapp.com web.whatsapp.com\
+    linkedin.com www.linkedin.com\
+    facebook.com www.facebook.com\
+    instagram.com www.instagram.com\
+    twitter.com www.twitter.com

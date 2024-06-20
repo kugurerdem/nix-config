@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+for site in $@;
+do
+    grep -q "$site" /etc/hosts \
+        || echo "::1 $site" | tee -a /etc/hosts
+done

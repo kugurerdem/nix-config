@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+cd $HOME/Pictures/Wallpapers || exit 1
+feh --bg-scale $(ls | shuf -n 1)

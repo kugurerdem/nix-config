@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+DIRPATH=$HOME/.gitjournal
+
+[ -d "$DIRPATH" ] ||
+    { echo "Directory $DIRPATH does not exist" 1>&2; exit 1; }
+
+cd "$DIRPATH" || exit
+
+echo "Synchronizing..."
+git pull
+
+[ -z ${VISUAL+x} ] &&
+    { echo '$VISUAL param should be set' 1>&2; exit 1; }
+
+echo "Opening $VISUAL"
+$VISUAL . &&
+    echo "Pushing to remote repository" &&
+    {
+        git add -u;
+        git add ./*.md
+        git cm -m "Update Note $(git diff --name-only --cached)";
+        git push;
+    }

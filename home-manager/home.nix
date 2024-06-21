@@ -52,16 +52,16 @@ in
         # TUI/CLI Utilities
             neofetch
 
-            lf # TUI file manager
             ctpv # previews for lf
+            lf # TUI file manager
 
             pamixer # used for setting sound
             acpi # used for seeing battery
 
             zip unzip
 
-            pass # CLI based password manager
             passExtensions.pass-otp # Use pass for OTP
+            pass # CLI based password manager
             zbar # decode bar codes from image files, can be used with pass-top
 
             entr # Watch file changes

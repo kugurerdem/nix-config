@@ -30,40 +30,59 @@ in
             PAGER = "less";
         };
         packages = with pkgs; [
-            brave
-
-            zellij
-            git
-            neofetch
-
-            # window manager stuff
+        # Window Manager Stuff
             dwm
             dwmblocks
             dmenu
             dunst # notification daemon
             libnotify # includes notify-send
+            scrot # for takin screenshots
+            slock # X screen locker
 
             # clipboard utils
             xclip
             xsel
 
-            # required by dwmblocks
-            pamixer
-            acpi
-
-            alacritty
-
-            # Development
+        # Development
             nodejs_22
+            python3
+            git
+            zellij # favorite Terminal Multiplexer
 
-            # Shell utilities
-            autojump
-            lf
+        # TUI/CLI Utilities
+            neofetch
 
-            pass
-            passExtensions.pass-otp
+            lf # TUI file manager
+            ctpv # previews for lf
 
-            pandoc
+            pamixer # used for setting sound
+            acpi # used for seeing battery
+
+            zip unzip
+
+            pass # CLI based password manager
+            passExtensions.pass-otp # Use pass for OTP
+            zbar # decode bar codes from image files, can be used with pass-top
+
+            entr # Watch file changes
+            moreutils # COOL Linux utilities like vipe, vidir, etc.
+            xsv # Great tool for working with CSV through CLI
+            jq # JSON Parser
+
+            pandoc # conversion between document formats
+
+            rsync # for syncing files between directories
+            android-tools # have adb in it
+
+        # Desktop/GUI programs
+            alacritty # my favorite terminal
+            xfce.thunar # file manager
+            blueberry # bluetooth manager GUI
+            brave
+            telegram-desktop
+            signal-desktop
+            libreoffice-fresh
+            vlc # The VLC media player
         ];
 
         file.".inputrc".source = ./dotfiles/.inputrc;

@@ -40,7 +40,10 @@ in
             dwm
             dwmblocks
             dmenu
+            dunst # notification daemon
+            libnotify # includes notify-send
 
+            # clipboard utils
             xclip
             xsel
 
@@ -58,6 +61,9 @@ in
             lf
 
             pass
+            passExtensions.pass-otp
+
+            pandoc
         ];
 
         file.".inputrc".source = ./dotfiles/.inputrc;
@@ -96,11 +102,13 @@ in
         enableBashIntegration = true;
     };
 
+    programs.feh.enable = true;
     services.picom = {
         enable = true;
         fade = true;
         fadeSteps = [0.07 0.07];
     };
+
 
     programs.gpg.enable = true;
     services.gpg-agent.enable = true;

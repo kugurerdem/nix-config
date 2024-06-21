@@ -51,11 +51,22 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
+  services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+  };
+
+  programs.light.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rugu = {
     isNormalUser = true;
     description = "rugu";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "sound" "video" ];
     packages = with pkgs; [];
   };
 

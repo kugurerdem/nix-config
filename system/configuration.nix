@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Bootloader.
@@ -47,6 +47,9 @@
   };
 
   services.udisks2.enable = true;
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rugu = {

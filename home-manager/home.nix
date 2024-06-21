@@ -68,6 +68,8 @@ in
 
         file.".inputrc".source = ./dotfiles/.inputrc;
         file.".xinitrc".source = ./dotfiles/.xinitrc;
+        file.".Xresources".source = ./dotfiles/.Xresources;
+        file.".xprofile".source = ./dotfiles/.xprofile;
         file.".gitconfig".source = ./dotfiles/.gitconfig;
     };
 

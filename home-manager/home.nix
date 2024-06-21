@@ -60,8 +60,7 @@ in
 
             zip unzip
 
-            passExtensions.pass-otp # Use pass for OTP
-            pass # CLI based password manager
+            (pass.withExtensions (ext: with ext; [passExtensions.pass-otp]))
             zbar # decode bar codes from image files, can be used with pass-top
 
             entr # Watch file changes

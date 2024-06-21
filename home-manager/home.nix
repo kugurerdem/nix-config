@@ -90,6 +90,13 @@ in
         file.".Xresources".source = ./dotfiles/.Xresources;
         file.".xprofile".source = ./dotfiles/.xprofile;
         file.".gitconfig".source = ./dotfiles/.gitconfig;
+
+        sessionPath = [ "$HOME/.local/bin" ];
+        file.".local/bin" = {
+            source = ./dotfiles/.local/bin;
+            recursive = true;
+            executable = true;
+        };
     };
 
     programs.bash = {
@@ -135,11 +142,4 @@ in
     services.gpg-agent.enable = true;
     services.gpg-agent.defaultCacheTtl = 3000;
     services.gpg-agent.pinentryPackage = pkgs.pinentry-gtk2;
-
-    home.sessionPath = [ "$HOME/.local/bin" ];
-    home.file.".local/bin" = {
-        source = ./dotfiles/.local/bin;
-        recursive = true;
-        executable = true;
-    };
 }

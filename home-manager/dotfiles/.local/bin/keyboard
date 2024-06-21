@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    setxkbmap -option "caps:swapescape"
+elif [ "$1" == "normal" ]; then
+    setxkbmap -option ""
+fi
+
+setxkbmap -model pc104 -layout tr -variant alt

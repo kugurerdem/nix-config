@@ -41,16 +41,22 @@
     enable = true;
     autorun = false;
 
-    windowManager.dwm.enable = true;
-    windowManager.dwm.package =
-        pkgs.dwm.overrideAttrs {
-            src = fetchGit {
-                url = "https://github.com/kugurerdem/dwm.git";
-            };
-        };
-
     displayManager.lightdm.enable = true;
     displayManager.startx.enable = false;
+
+    displayManager.session = [
+        # add new sessions to try different wms
+        {
+            manage = "window";
+            name = "rugudwm";
+            start = ''
+                dwm &
+                waitPID=$!
+            '';
+        }
+    ];
+
+    displayManager.defaultSession = "none+rugudwm";
 
     xkb.layout = "us";
     xkb.variant = "";

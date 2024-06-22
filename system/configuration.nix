@@ -40,7 +40,17 @@
   services.xserver = {
     enable = true;
     autorun = false;
-    displayManager.startx.enable = true;
+
+    windowManager.dwm.enable = true;
+    windowManager.dwm.package =
+        pkgs.dwm.overrideAttrs {
+            src = fetchGit {
+                url = "https://github.com/kugurerdem/dwm.git";
+            };
+        };
+
+    displayManager.lightdm.enable = true;
+    displayManager.startx.enable = false;
 
     xkb.layout = "us";
     xkb.variant = "";
@@ -74,6 +84,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfreePredicate = (_: true);
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

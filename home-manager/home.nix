@@ -18,7 +18,9 @@ in
     imports = [
         ./neovim.nix
         ./alacritty.nix
+        ./newsboat.nix
     ];
+
 
     home = {
         username = "rugu";

@@ -56,6 +56,7 @@ in
 
             ctpv # previews for lf
             lf # TUI file manager
+            fasd
 
             pamixer # used for setting sound
             acpi # used for seeing battery
@@ -122,6 +123,9 @@ in
                 fi
 
             }
+
+            [ -f "$HOME/.local/bin/fasd-init.sh" ] \
+                && source $HOME/.local/bin/fasd-init.sh
         '';
         profileExtra = "startx";
     };

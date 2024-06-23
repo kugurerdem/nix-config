@@ -80,7 +80,6 @@ in
             alacritty # my favorite terminal
             xfce.thunar # file manager
             blueberry # bluetooth manager GUI
-            brave
             telegram-desktop
             signal-desktop
             libreoffice-fresh
@@ -142,6 +141,19 @@ in
         fadeSteps = [0.07 0.07];
     };
 
+    programs.chromium = {
+        enable = true;
+        package = pkgs.brave;
+        extensions = [
+            { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
+            { id = "kbfnbcaeplbcioakkpcpgfkobkghlhen"; } # Grammarly
+            { id = "clngdbkpkpeebahjckkjfobafhncgmne"; } # Stylus
+            { id = "pobhoodpcipjmedfenaigbeloiidbflp"; } # Minimal Theme for Twitter
+            { id = "khncfooichmfjbepaaaebmommgaepoid"; } # YouTube Unhooked
+            { id = "lggmmceliiaoddfnbaccgpfnpoifilic"; } # Bell of Mindfulness
+            { id = "khgegkjchclhgpglloficdmdannlpmoi"; } # What Hackernews Says?
+        ];
+    };
 
     programs.gpg.enable = true;
     services.gpg-agent.enable = true;

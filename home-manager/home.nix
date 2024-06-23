@@ -1,24 +1,11 @@
 { config, pkgs, ... }:
 
-let
-    dwm = pkgs.dwm.overrideAttrs {
-        src = fetchGit {
-            url = "https://github.com/kugurerdem/dwm.git";
-        };
-    };
-
-    dwmblocks = pkgs.dwmblocks.overrideAttrs {
-        src = fetchGit {
-            url = "https://github.com/kugurerdem/dwmblocks.git";
-        };
-    };
-
-in
 {
     imports = [
         ./neovim.nix
         ./alacritty.nix
         ./newsboat.nix
+        ./dwm.nix
     ];
 
 
@@ -32,19 +19,6 @@ in
             PAGER = "less";
         };
         packages = with pkgs; [
-        # Window Manager Stuff
-            dwm
-            dwmblocks
-            dmenu
-            dunst # notification daemon
-            libnotify # includes notify-send
-            scrot # for takin screenshots
-            slock # X screen locker
-
-            # clipboard utils
-            xclip
-            xsel
-
         # Development
             nodejs_22
             python3
@@ -84,12 +58,13 @@ in
             signal-desktop
             libreoffice-fresh
             vlc # The VLC media player
+
+            (prismlauncher.override { jdks = [
+                jdk21
+            ]; }) # minecraft launcher
         ];
 
         file.".inputrc".source = ./dotfiles/.inputrc;
-        file.".xinitrc".source = ./dotfiles/.xinitrc;
-        file.".Xresources".source = ./dotfiles/.Xresources;
-        file.".xprofile".source = ./dotfiles/.xprofile;
         file.".gitconfig".source = ./dotfiles/.gitconfig;
 
         sessionPath = [ "$HOME/.local/bin" ];
@@ -126,7 +101,6 @@ in
             [ -f "$HOME/.local/bin/fasd-init.sh" ] \
                 && source $HOME/.local/bin/fasd-init.sh
         '';
-        profileExtra = "startx";
     };
 
     programs.fzf = {

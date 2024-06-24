@@ -49,6 +49,7 @@
 
             rsync # for syncing files between directories
             android-tools # have adb in it
+            ffmpeg_7-full
 
         # Desktop/GUI programs
             alacritty # my favorite terminal

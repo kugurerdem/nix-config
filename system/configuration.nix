@@ -48,7 +48,7 @@
         # add new sessions to try different wms
         {
             manage = "window";
-            name = "rugudwm";
+            name = "dwm";
             start = ''
                 dwm &
                 waitPID=$!
@@ -56,7 +56,7 @@
         }
     ];
 
-    displayManager.defaultSession = "none+rugudwm";
+    displayManager.defaultSession = "none+dwm";
 
     xkb.layout = "us";
     xkb.variant = "";

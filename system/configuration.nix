@@ -78,6 +78,14 @@
 
   programs.light.enable = true;
 
+  services.flatpak.enable = true;
+  # required for flatpak
+  xdg.portal = with pkgs; {
+    enable = true;
+    extraPortals = [ xdg-desktop-portal-gtk ];
+    configPackages = [ xdg-desktop-portal-gtk ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rugu = {
     isNormalUser = true;

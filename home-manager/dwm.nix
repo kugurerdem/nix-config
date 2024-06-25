@@ -31,6 +31,8 @@ in
             # clipboard utils
             xclip
             xsel
+
+            xorg.xkill
         ];
     };
 }

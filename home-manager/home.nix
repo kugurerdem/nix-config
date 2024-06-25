@@ -1,5 +1,13 @@
 { config, pkgs, ... }:
 
+let
+    pass = pkgs.pass.override {
+        x11Support = false;
+        waylandSupport = false;
+        dmenuSupport = false;
+    };
+in
+
 {
     imports = [
         ./neovim.nix
@@ -25,12 +33,15 @@
             git
             zellij # favorite Terminal Multiplexer
 
+            hugo
+
         # TUI/CLI Utilities
             neofetch
 
             ctpv # previews for lf
             lf # TUI file manager
             fasd
+            ripgrep
 
             pamixer # used for setting sound
             acpi # used for seeing battery
@@ -48,6 +59,9 @@
             pandoc # conversion between document formats
 
             rsync # for syncing files between directories
+            inetutils # ifconfig, ping, traceroute, ftp, and so on...
+            tcpdump # Network sniffer
+            bind # contains nslookup and dig
             android-tools # have adb in it
             ffmpeg_7-full
 
@@ -57,8 +71,11 @@
             blueberry # bluetooth manager GUI
             telegram-desktop
             signal-desktop
-            libreoffice-fresh
+            libreoffice-qt
             vlc # The VLC media player
+            obsidian # note taking
+            okular # PDF Reader
+            stremio # watch movies/tv-series
 
             (prismlauncher.override { jdks = [
                 jdk21

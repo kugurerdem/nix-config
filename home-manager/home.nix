@@ -31,6 +31,7 @@ in
             nodejs_22
             python3
             git
+            lazygit
             zellij # favorite Terminal Multiplexer
 
             hugo

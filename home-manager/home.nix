@@ -94,6 +94,8 @@ in
         };
     };
 
+    xdg.configFile.zellij.source = ./dotfiles/.config/zellij;
+
     programs.bash = {
         enable = true;
         shellAliases = {

@@ -15,9 +15,11 @@
         vscode-langservers-extracted
         rust-analyzer
         lua-language-server
+        clojure-lsp
 
         # Tools
         go
+        clojure
     ];
         plugins = with pkgs.vimPlugins; [
             vim-commentary
@@ -25,6 +27,8 @@
             awesome-vim-colorschemes
             copilot-vim
             nvim-lspconfig
+
+            conjure # for clojure REPL integration
         ];
     };
 

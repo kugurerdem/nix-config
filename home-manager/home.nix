@@ -29,6 +29,10 @@ in
         packages = with pkgs; [
         # Development
             nodejs_22
+
+            clojure
+            leiningen # project manager for clojure
+
             python3
             git
             lazygit

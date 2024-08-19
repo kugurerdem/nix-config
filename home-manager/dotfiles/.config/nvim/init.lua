@@ -153,3 +153,5 @@ lspconfig.tsserver.setup {
 }
 
 lspconfig.eslint.setup {}
+
+lspconfig.clojure_lsp.setup {}

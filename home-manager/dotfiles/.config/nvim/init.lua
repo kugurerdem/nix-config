@@ -25,6 +25,10 @@ vim.opt.swapfile = false -- Disable swap file
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevelstart = 99
 
+-- Some plugins rely on these values, if not set, both are \ by default
+vim.g.mapleader = '\\'
+vim.g.maplocalleader = ','
+
 -- hotkeys
 vim.api.nvim_set_keymap(
 'n', '<leader>c', ':set cc=80<CR>', { noremap = true, silent = true })

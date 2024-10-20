@@ -6,11 +6,13 @@ let
         waylandSupport = false;
         dmenuSupport = false;
     };
+
+    customPkgs = import ../pkgs/default.nix {};
 in
 
 {
     imports = [
-        ./neovim.nix
+        # ./neovim.nix
         ./alacritty.nix
         ./newsboat.nix
         ./dwm.nix
@@ -28,10 +30,18 @@ in
         };
         packages = with pkgs; [
         # Development
-            nodejs_22
+            gnumake
+            gcc14
+            nodejs_20
+            # nodejs_22
+            nodePackages.live-server
+            web-ext
 
-            clojure
+            postgresql_16
+
+            clojure # repl & compiler
             leiningen # project manager for clojure
+            babashka # an interpreter
 
             python3
             git
@@ -61,6 +71,10 @@ in
             xsv # Great tool for working with CSV through CLI
             jq # JSON Parser
 
+            rlwrap
+
+            tree
+
             pandoc # conversion between document formats
 
             rsync # for syncing files between directories
@@ -70,21 +84,32 @@ in
             android-tools # have adb in it
             ffmpeg_7-full
 
+            yt-dlp
+
         # Desktop/GUI programs
             alacritty # my favorite terminal
+
             xfce.thunar # file manager
+            xfce.tumbler
+
             blueberry # bluetooth manager GUI
             telegram-desktop
             signal-desktop
             libreoffice-qt
             vlc # The VLC media player
             obsidian # note taking
+            sxiv # image viewer
             okular # PDF Reader
             stremio # watch movies/tv-series
+
+            openshot-qt
+            simplescreenrecorder # screen recording program
 
             (prismlauncher.override { jdks = [
                 jdk21
             ]; }) # minecraft launcher
+
+            customPkgs.neovim
         ];
 
         file.".inputrc".source = ./dotfiles/.inputrc;
@@ -107,6 +132,7 @@ in
 
             sudo = "sudo ";
             ll = "ls -pF";
+            lg = "lazygit";
             e = "edit_file_opened_by_fzf";
             diary = ''$EDITOR $HOME/Documents/my/diary/$(date +%G).md'';
         };
@@ -153,6 +179,8 @@ in
             { id = "khgegkjchclhgpglloficdmdannlpmoi"; } # What Hackernews Says?
         ];
     };
+
+    programs.firefox.enable = true;
 
     programs.gpg.enable = true;
     services.gpg-agent.enable = true;

@@ -55,6 +55,8 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
+  virtualisation.docker.enable = true;
+
   services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -78,7 +80,7 @@
   users.users.rugu = {
     isNormalUser = true;
     description = "rugu";
-    extraGroups = [ "networkmanager" "wheel" "audio" "sound" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "sound" "video" "docker"];
     packages = with pkgs; [];
   };
 

@@ -6,8 +6,7 @@ let
     runtimeDependencies = with pkgs; [
         # LSP
         gopls
-        # nodePackages.typescript-language-server
-        nodePackages_latest.typescript-language-server
+        nodePackages.typescript-language-server
         vscode-langservers-extracted
         rust-analyzer
         lua-language-server
@@ -40,11 +39,7 @@ let
         };
     };
 in
-
-# TODO: Find a way to hide runtimeDependencies from host, but make them still
-# available to Neovim (kindof like extraPackage parameter in home-manager)
-# TODO: this does not work as expected. Not all executables are in bin.
-pkgs.symlinkJoin {
-    name = "rugu-neovim";
-    paths = runtimeDependencies ++ [customNeovim];
-}
+pkgs.writeShellScriptBin "nvim" ''
+    export PATH=${pkgs.lib.makeBinPath runtimeDependencies}:$PATH
+    exec ${customNeovim}/bin/nvim "$@"
+''

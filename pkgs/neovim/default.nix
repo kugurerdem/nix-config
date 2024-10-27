@@ -18,7 +18,10 @@ let
     ];
 
     plugins = with pkgs.vimPlugins; [
-        vim-commentary
+        vim-commentary # type gc to comment out stuff
+        vim-surround
+
+        vim-css-color
         vim-airline
         awesome-vim-colorschemes
         copilot-vim
@@ -26,6 +29,8 @@ let
 
         conjure # for clojure REPL integration
         vim-sexp
+
+        telescope-nvim
     ];
 
     customNeovim = pkgs.neovim.override {

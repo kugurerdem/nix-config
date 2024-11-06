@@ -215,6 +215,7 @@ in
             { id = "khncfooichmfjbepaaaebmommgaepoid"; } # YouTube Unhooked
             { id = "lggmmceliiaoddfnbaccgpfnpoifilic"; } # Bell of Mindfulness
             { id = "khgegkjchclhgpglloficdmdannlpmoi"; } # What Hackernews Says?
+            { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark Reader
         ];
     };
 

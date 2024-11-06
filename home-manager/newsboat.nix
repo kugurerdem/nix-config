@@ -37,10 +37,13 @@
 
 
         urls = [
+            { url = "https://mihaiolteanu.me/rss.xml"; }
             { url = "https://www.arp242.net/feed.xml"; }
             { url = "https://andrew-quinn.me/index.xml"; }
             { url = "https://antonz.org/all/index.xml"; }
             { url = "https://www.rugu.dev/en/blog/index.xml"; }
+            { url = "https://feeds.transistor.fm/thoughts-on-functional-programming-podcast-by-eric-normand"; }
+            { url = "https://breckyunits.com/feed.xml"; }
         ];
     };
 }

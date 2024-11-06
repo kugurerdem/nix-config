@@ -12,7 +12,6 @@ in
 
 {
     imports = [
-        # ./neovim.nix
         ./alacritty.nix
         ./newsboat.nix
         ./dwm.nix

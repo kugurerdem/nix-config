@@ -46,11 +46,14 @@ in
             python3
             git
             lazygit
+            lazydocker
+            docker-compose
             zellij # favorite Terminal Multiplexer
 
             hugo
 
         # TUI/CLI Utilities
+            nix-index
             neofetch
 
             ctpv # previews for lf
@@ -95,12 +98,16 @@ in
             blueberry # bluetooth manager GUI
             telegram-desktop
             signal-desktop
+            slack
             libreoffice-qt
-            vlc # The VLC media player
+            vlc # The cVLC media player
             obsidian # note taking
             sxiv # image viewer
             okular # PDF Reader
             stremio # watch movies/tv-series
+
+            obsidian
+            logseq
 
             openshot-qt
             simplescreenrecorder # screen recording program
@@ -110,6 +117,7 @@ in
             ]; }) # minecraft launcher
 
             customPkgs.neovim
+            pavucontrol
         ];
 
         file.".inputrc".source = ./dotfiles/.inputrc;
@@ -218,4 +226,6 @@ in
     services.gpg-agent.enable = true;
     services.gpg-agent.defaultCacheTtl = 3000;
     services.gpg-agent.pinentryPackage = pkgs.pinentry-gtk2;
+
+    services.syncthing.enable = true;
 }

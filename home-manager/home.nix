@@ -136,8 +136,6 @@ in
     programs.bash = {
         enable = true;
         shellAliases = {
-            rebuild = "sudo nixos-rebuild switch";
-
             sudo = "sudo ";
             ll = "ls -pF";
             lg = "lazygit";
@@ -164,6 +162,24 @@ in
 
     programs.fish = {
         enable = true;
+        shellAliases = {
+            sudo = "sudo ";
+            ll = "ls -pF";
+            lg = "lazygit";
+            e = "edit_file_opened_by_fzf";
+            diary = ''$EDITOR $HOME/Documents/my/diary/$(date +%G).md'';
+        };
+        interactiveShellInit = ''
+            set -g fish_greeting
+            fish_vi_key_bindings
+
+            function edit_file_opened_by_fzf
+                set file (fzf)
+                if test -n "$file"
+                    nvim "$file"
+                end
+            end
+        '';
         plugins = [
             {
                 name = "fasd";
@@ -175,23 +191,6 @@ in
                 };
             }
         ];
-        shellAliases = {
-            sudo = "sudo ";
-            ll = "ls -pF";
-            lg = "lazygit";
-            e = "edit_file_opened_by_fzf";
-            diary = ''$EDITOR $HOME/Documents/my/diary/$(date +%G).md'';
-        };
-        interactiveShellInit = ''
-            fish_vi_key_bindings
-
-            function edit_file_opened_by_fzf
-                set file (fzf)
-                if test -n "$file"
-                    nvim "$file"
-                end
-            end
-        '';
     };
 
     programs.fzf = {

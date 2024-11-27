@@ -192,6 +192,12 @@ in
         ];
     };
 
+    xdg.configFile."fish/functions" = {
+        source = ./dotfiles/.config/fish/functions;
+        recursive = true;
+    };
+
+
     programs.direnv = {
         enable = true;
         nix-direnv.enable = true;

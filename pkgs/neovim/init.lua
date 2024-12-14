@@ -39,6 +39,15 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
 'n', '<leader>n', ':noh<CR>', { noremap = true, silent = true })
 
+local function soft_wrap()
+    vim.wo.wrap = true
+    vim.wo.linebreak = true
+    vim.o.columns = 80
+    print("Wrap and linebreak on; columns set to 80")
+end
+
+vim.api.nvim_create_user_command("SoftWrap", soft_wrap, {})
+
 -- Autocommands
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'javascript',
@@ -105,7 +114,7 @@ vim.cmd('match ExtraWhitespace /\\s\\+$/')
 
 
 -- Co-pilot settings
-vim.g.copilot_enabled = false
+vim.g.copilot_enabled = true
 vim.g.copilot_filetypes = {
     ['*'] = false,
     ['javascript'] = true,
@@ -147,7 +156,7 @@ lspconfig.lua_ls.setup {
     on_attach = on_attach
 }
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
     on_attach = on_attach,
     init_options = {
         preferences = {

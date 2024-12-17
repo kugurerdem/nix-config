@@ -2,9 +2,11 @@ vim.opt.compatible = false -- Disable compatibility to old-time vi
 vim.opt.showmatch = true -- Show matching
 vim.opt.hlsearch = true -- Highlight search
 vim.opt.incsearch = true -- Incremental search
+
+-- Default tab & indendation settings
+vim.opt.expandtab = true -- Converts tabs to white space
 vim.opt.tabstop = 4 -- Number of columns occupied by a tab
 vim.opt.softtabstop = 4 -- See multiple spaces as tabstops so <BS> does the right thing
-vim.opt.expandtab = true -- Converts tabs to white space
 vim.opt.shiftwidth = 4 -- Width for autoindents
 vim.opt.autoindent = true -- Indent a new line the same amount as the line just typed
 vim.opt.smartindent = true -- Smart indent
@@ -78,31 +80,37 @@ vim.api.nvim_create_autocmd('FileType', {
     command = 'nnoremap <buffer> <C-n> :!clojure %<CR>',
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'go',
-    command = 'nnoremap <buffer> <C-n> :!go run %<CR>',
-})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    -- Indentation settings
+    vim.opt_local.expandtab = false
+    vim.opt.list = false
 
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'go',
-    command = 'nnoremap <buffer> <C-l> :!golangci-lint run %<CR>',
+    -- Key mappings
+    vim.keymap.set("n", "<C-n>", ":!go run %<CR>", { buffer = true, silent = true })
+    vim.keymap.set("n", "<C-l>", ":!golangci-lint run %<CR>", { buffer = true, silent = true })
+  end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'rust',
-    command = 'nnoremap <buffer> <C-n> :!cargo run %<CR>',
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'rust',
-    command = 'nnoremap <buffer> <C-l> :!cargo check<CR>',
+    callback = function()
+        vim.keymap.set(
+            'n', '<C-n>', ':!cargo run<CR>',
+            { buffer = true, silent = true }
+        )
+        vim.keymap.set(
+            'n', '<C-l>', ':!cargo check<CR>',
+            { buffer = true, silent = true }
+        )
+    end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'markdown',
     command = 'nnoremap <buffer> <C-n> :!pandoc -s % -o %:r.pdf<CR>',
 })
-
 
 -- Color settings
 vim.cmd('colorscheme minimalist')
@@ -130,6 +138,8 @@ vim.g.copilot_filetypes = {
     ['cpp'] = true,
     ['h'] = true,
     ['go'] = true,
+    ['lua'] = true,
+    ['nix'] = true,
 }
 
 -- LSP Config

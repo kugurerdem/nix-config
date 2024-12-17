@@ -2,4 +2,5 @@
 
 {
     neovim = pkgs.callPackage ./neovim {};
+    zellij = pkgs.callPackage ./zellij {};
 }

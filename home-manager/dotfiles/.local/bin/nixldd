@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Find packages for missing dynamic libraries of a program
+
+ldd "$1" | awk '{print $1}' | while read -r missing_lib; do
+  result=$(
+      nix-locate --top-level --minimal --whole-name --at-root "/lib/$missing_lib" \
+          | grep -v "(" \
+          | sed 's/\.[^.]*$//g' \
+          | tr '\n' ' '
+      )
+  echo -e "$missing_lib:\n $result"
+done
+

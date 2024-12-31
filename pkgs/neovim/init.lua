@@ -27,9 +27,13 @@ vim.opt.swapfile = false -- Disable swap file
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevelstart = 99
 
+-- Update shell directory to current pwd of the file being edited
+vim.opt.autochdir = true
+
 -- Some plugins rely on these values, if not set, both are \ by default
 vim.g.mapleader = '\\'
 vim.g.maplocalleader = ','
+
 
 -- hotkeys
 vim.api.nvim_set_keymap(

@@ -6,6 +6,7 @@ let
     runtimeDependencies = with pkgs; [
         # LSP
         gopls
+        gotools # for goimports
         nodePackages.typescript-language-server
         vscode-langservers-extracted
         rust-analyzer

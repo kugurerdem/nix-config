@@ -27,9 +27,6 @@ vim.opt.swapfile = false -- Disable swap file
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevelstart = 99
 
--- Update shell directory to current pwd of the file being edited
-vim.opt.autochdir = true
-
 -- Some plugins rely on these values, if not set, both are \ by default
 vim.g.mapleader = '\\'
 vim.g.maplocalleader = ','
@@ -90,11 +87,23 @@ vim.api.nvim_create_autocmd("FileType", {
     -- Indentation settings
     vim.opt_local.expandtab = false
     vim.opt.list = false
-
-    -- Key mappings
-    vim.keymap.set("n", "<C-n>", ":!go run %<CR>", { buffer = true, silent = true })
-    vim.keymap.set("n", "<C-l>", ":!golangci-lint run %<CR>", { buffer = true, silent = true })
   end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "go",
+  callback = function()
+    vim.cmd("!goimports -w % && gofmt -w %")
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'nix',
+    callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.shiftwidth = 2
+    end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {

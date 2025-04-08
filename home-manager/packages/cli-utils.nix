@@ -14,6 +14,7 @@ in
 {
   home.packages = with pkgs; [
     hugo
+    less
 
     nix-index
     neofetch
@@ -34,7 +35,6 @@ in
     lsof
     entr # Watch file changes
     moreutils # COOL Linux utilities like vipe, vidir, etc.
-    xsv # Great tool for working with CSV through CLI
     jq # JSON Parser
 
     rlwrap

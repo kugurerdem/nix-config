@@ -60,4 +60,6 @@
 
         file.".inputrc".source = ./dotfiles/.inputrc;
     };
+
+    programs.home-manager.enable = true;
 }

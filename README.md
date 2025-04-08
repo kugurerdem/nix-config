@@ -33,7 +33,13 @@ nix-channel --add https://github.com/nix-community/home-manager/archive/release-
 nix-channel --update
 ```
 
-Now, lets link home-manager configs.
+Now, create home.nix file;
+
+```
+cp /home-manager/home-example.nix home.nix
+```
+
+Configure it. And then, link the home-manager configs.
 
 ```
 mkdir -p .config/home-manager

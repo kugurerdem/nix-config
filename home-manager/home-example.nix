@@ -32,6 +32,12 @@
         ./services/gpg-agent.nix
     ];
 
+    # TODO: Enter your own email and name
+    programs.git = {
+      userEmail = "email@gmail.com";
+      userName = "username";
+    };
+
     home = {
         # TODO: Enter your own username and home directory
         username = "rugu";
@@ -53,11 +59,5 @@
         };
 
         file.".inputrc".source = ./dotfiles/.inputrc;
-
-        # TODO: Enter your own email and name
-        programs.git = {
-          userEmail = "email@gmail.com";
-          userName = "username";
-        }
     };
 }

@@ -2,6 +2,7 @@
 
 {
     imports = [
+        # ./gnome.nix
         ./dwm.nix
 
         ./fish.nix

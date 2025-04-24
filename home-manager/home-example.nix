@@ -31,6 +31,8 @@
         ./services/picom.nix
         ./services/syncthing.nix
         ./services/gpg-agent.nix
+        ./services/udiskie.nix
+        ./services/cbatticon.nix
     ];
 
     # TODO: Enter your own email and name

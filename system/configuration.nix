@@ -1,18 +1,21 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [
+    /etc/nixos/hardware-configuration.nix  # Include the results of the hardware scan.
+    ./users.nix
+    ./bluetooth.nix
+    ./gnome.nix
+    ./ld.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  swapDevices = [
+    { device = "/swapfile"; }
+  ];
 
   # Set networking
   networking.hostName = "nixos"; # Define your hostname.
@@ -24,19 +27,21 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
+  services.xserver.windowManager.i3.enable = true;
+
   # Configure keymap in X11
   services.xserver = {
     enable = true;
     autorun = false;
 
-    displayManager.lightdm.enable = true;
-    displayManager.startx.enable = false;
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
 
     displayManager.session = [
-        # add new sessions to try different wms
         {
             manage = "window";
             name = "dwm";
+            # if the user has dwm installed, use it
             start = ''
                 dwm &
                 waitPID=$!
@@ -52,9 +57,6 @@
 
   services.udisks2.enable = true;
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
   virtualisation.docker.enable = true;
 
   services.pipewire = {
@@ -62,8 +64,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
   };
 
   programs.light.enable = true;
@@ -78,23 +78,9 @@
 
   programs.fish.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rugu = {
-    isNormalUser = true;
-    description = "rugu";
-    extraGroups = [ "networkmanager" "wheel" "audio" "sound" "video" "docker"];
-    packages = with pkgs; [];
-    shell = pkgs.fish;
-  };
-
-  security.sudo.wheelNeedsPassword = false;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.config.allowUnfreePredicate = (_: true);
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     home-manager
     vim
@@ -106,6 +92,8 @@
     VISUAL = "vim";
     PAGER = "less";
   };
+
+  environment.localBinInPath = true;
 
   nix.gc = {
       automatic = true;

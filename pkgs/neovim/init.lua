@@ -31,6 +31,7 @@ vim.opt.foldlevelstart = 99
 vim.g.mapleader = '\\'
 vim.g.maplocalleader = ','
 
+vim.opt.exrc = true -- Enable .vimrc in current directory
 
 -- hotkeys
 vim.api.nvim_set_keymap(
@@ -91,14 +92,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "go",
+  pattern = "*.go",
   callback = function()
     vim.cmd("!goimports -w % && gofmt -w %")
   end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'nix',
+    pattern = "nix",
     callback = function()
         vim.opt_local.tabstop = 2
         vim.opt_local.softtabstop = 2
@@ -138,21 +139,35 @@ vim.cmd('match ExtraWhitespace /\\s\\+$/')
 vim.g.copilot_enabled = true
 vim.g.copilot_filetypes = {
     ['*'] = false,
-    ['javascript'] = true,
-    ['python'] = true,
-    ['sql'] = true,
-    ['sh'] = true,
-    ['haskell'] = true,
-    ['gitcommit'] = true,
-    ['vim'] = true,
-    ['css'] = true,
-    ['html'] = true,
-    ['c'] = true,
+    ['clojure'] = true,
+    ['cmake'] = true,
     ['cpp'] = true,
-    ['h'] = true,
+    ['css'] = true,
+    ['c'] = true,
+    ['dockerfile'] = true,
+    ['gitcommit'] = true,
     ['go'] = true,
+    ['haskell'] = true,
+    ['html'] = true,
+    ['h'] = true,
+    ['javascriptreact'] = true,
+    ['javascript'] = true,
+    ['java'] = true,
+    ['json'] = true,
+    ['jsx'] = true,
+    ['lisp'] = true,
     ['lua'] = true,
+    ['make'] = true,
     ['nix'] = true,
+    ['python'] = true,
+    ['rust'] = true,
+    ['shell'] = true,
+    ['sh'] = true,
+    ['sql'] = true,
+    ['toml'] = true,
+    ['typescript'] = true,
+    ['vim'] = true,
+    ['yaml'] = true,
 }
 
 -- LSP Config
@@ -166,7 +181,9 @@ end
 
 local lspconfig = require('lspconfig')
 
-lspconfig.gopls.setup {on_attach = on_attach}
+lspconfig.gopls.setup {
+    on_attach = on_attach
+}
 lspconfig.rust_analyzer.setup {on_attach = on_attach}
 lspconfig.lua_ls.setup {
     settings = {

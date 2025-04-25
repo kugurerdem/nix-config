@@ -11,11 +11,11 @@ let
         vscode-langservers-extracted
         rust-analyzer
         lua-language-server
-        clojure-lsp
+        # clojure-lsp
 
         # Tools
         go
-        clojure
+        # clojure
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -28,8 +28,10 @@ let
         copilot-vim
         nvim-lspconfig
 
-        conjure # for clojure REPL integration
-        vim-sexp
+        markdown-preview-nvim
+
+        # conjure # for clojure REPL integration
+        # vim-sexp
 
         telescope-nvim
     ];

@@ -3,13 +3,6 @@
 {
   programs.bash = {
       enable = true;
-      shellAliases = {
-          sudo = "sudo ";
-          ll = "ls -pF";
-          lg = "lazygit";
-          e = "edit_file_opened_by_fzf";
-          diary = ''$EDITOR $HOME/Documents/my/diary/$(date +%G).md'';
-      };
       bashrcExtra = ''
           bind -m vi-command 'Control-l: clear-screen'
           bind -m vi-insert 'Control-l: clear-screen'
@@ -20,7 +13,6 @@
               if [[ -n $file ]]; then
                   nvim "$file"
               fi
-
           }
 
           [ -f "$HOME/.local/bin/fasd-init.sh" ] \

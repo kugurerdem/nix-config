@@ -49,9 +49,17 @@
         stateVersion = "24.11";
 
         sessionVariables = {
-            EDITOR = "nvim";
-            VISUAL = "nvim";
-            PAGER = "less";
+          EDITOR = "nvim";
+          VISUAL = "nvim";
+          PAGER = "less";
+        };
+
+        shellAliases = {
+          sudo = "sudo ";
+          ll = "ls -pF";
+          lg = "lazygit";
+          e = "edit_file_opened_by_fzf";
+          diary = ''$EDITOR $HOME/Documents/my/diary/$(date +%G).md'';
         };
 
         sessionPath = [ "$HOME/.local/bin" ];

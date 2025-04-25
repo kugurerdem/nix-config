@@ -3,13 +3,6 @@
 {
   programs.fish = {
     enable = true;
-    shellAliases = {
-      sudo = "sudo ";
-      ll = "ls -pF";
-      lg = "lazygit";
-      e = "edit_file_opened_by_fzf";
-      diary = ''$EDITOR $HOME/Documents/my/diary/$(date +%G).md'';
-    };
     interactiveShellInit = ''
       set -g fish_greeting
       fish_vi_key_bindings
@@ -18,9 +11,9 @@
       set file (fzf)
       if test -n "$file"
         nvim "$file"
-          end
-          end
-          '';
+      end
+      end
+      '';
     plugins = [
     {
       name = "fasd";

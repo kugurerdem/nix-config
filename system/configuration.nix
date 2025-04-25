@@ -29,7 +29,7 @@
 
   services.xserver.windowManager.i3.enable = true;
 
-  # Configure keymap in X11
+  # Configure keymap in a11
   services.xserver = {
     enable = true;
     autorun = false;
@@ -48,8 +48,6 @@
             '';
         }
     ];
-
-    displayManager.defaultSession = "none+dwm";
 
     xkb.layout = "us";
     xkb.variant = "";

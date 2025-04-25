@@ -1,0 +1,97 @@
+# Set mod key (Super)
+set $mod Mod4
+
+# Font and Appearance
+font pango:monospace 12
+
+# Border style
+default_border pixel 1
+default_floating_border pixel 1
+
+# Bar
+bar {
+    status_command i3blocks
+    position top
+}
+
+# Workspaces (tags)
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+# Launching applications
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+p exec --no-startup-id passmenu
+bindsym $mod+Shift+p exec --no-startup-id pass-otp-menu
+bindsym $mod+c exec --no-startup-id alacritty
+
+# Window focus and movement
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+l move right
+
+# Layouts
+bindsym $mod+t layout tiling
+bindsym $mod+f layout floating
+bindsym $mod+m layout tabbed  # Closest to monocle
+
+# Killing windows
+bindsym $mod+x kill
+
+# Toggle bar
+bindsym $mod+b bar mode toggle
+
+# Workspace navigation
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+# Move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+
+# Move focus between monitors
+bindsym $mod+comma focus output left
+bindsym $mod+period focus output right
+
+# Move container to another monitor
+bindsym $mod+Shift+comma move workspace to output left
+bindsym $mod+Shift+period move workspace to output right
+
+# Screenshot keybindings
+bindsym Print exec --no-startup-id scrot -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/Screenshots/'
+bindsym Shift+Print exec --no-startup-id scrot -s -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/Screenshots/'
+
+# Volume and brightness keys (XF86 keys)
+bindsym XF86AudioMute exec --no-startup-id "pamixer -t; pkill -RTMIN+10 i3blocks;"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pamixer --allow-boost -i 5; pkill -RTMIN+10 i3blocks;"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pamixer --allow-boost -d 5; pkill -RTMIN+10 i3blocks;"
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+
+bindsym $mod+Shift+r reload

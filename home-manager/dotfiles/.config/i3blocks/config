@@ -1,0 +1,9 @@
+[memory]
+command=free -h | awk '/^Mem/ { print $3"/"$2 }' | sed 's/i//g'
+interval=30
+label=💾 
+
+[time]
+command=date '+%I:%M%p'
+interval=5
+label=🕜️ 

@@ -17,6 +17,7 @@ in
     less
 
     nix-index
+    nix-tree
     neofetch
 
     ctpv # previews for lf
@@ -54,6 +55,8 @@ in
     tcpdump
     bind
     android-tools
+
+    killall
 
     customPkgs.neovim
     customPkgs.zellij

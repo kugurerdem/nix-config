@@ -2,9 +2,10 @@
 
 {
     imports = [
-        ./gnome.nix
-        ./dwm.nix
-        ./i3wm.nix
+        ./ui/x.nix
+        ./ui/gnome.nix
+        ./ui/dwm.nix
+        ./ui/i3wm.nix
 
         ./fish.nix
         ./bash.nix
@@ -34,6 +35,8 @@
         ./services/gpg-agent.nix
         ./services/udiskie.nix
         ./services/cbatticon.nix
+        ./services/basic-applets.nix
+        ./services/flameshot.nix
     ];
 
     # TODO: Enter your own email and name
@@ -64,11 +67,7 @@
 
         sessionPath = [ "$HOME/.local/bin" ];
 
-        file.".local/bin" = {
-            source = ./dotfiles/.local/bin;
-            recursive = true;
-            executable = true;
-        };
+        file.".local/bin".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/.local/bin;
 
         file.".inputrc".source = ./dotfiles/.inputrc;
     };

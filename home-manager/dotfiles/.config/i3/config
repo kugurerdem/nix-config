@@ -84,8 +84,8 @@ bindsym $mod+Shift+comma move workspace to output left
 bindsym $mod+Shift+period move workspace to output right
 
 # Screenshot keybindings
-bindsym Print exec --no-startup-id scrot -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/Screenshots/'
-bindsym Shift+Print exec --no-startup-id scrot -s -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/Screenshots/'
+bindsym Print exec --no-startup-id flameshot screen -c -p ~/Pictures/Screenshots/
+bindsym Shift+Print exec --no-startup-id flameshot gui
 
 # Volume and brightness keys (XF86 keys)
 bindsym XF86AudioMute exec --no-startup-id "pamixer -t; pkill -RTMIN+10 i3blocks;"

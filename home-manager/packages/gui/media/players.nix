@@ -4,6 +4,6 @@
     mpv # General media player
     stremio # Watch movies/tv-series
     sxiv # image viewer
-    kdePackages.okular # PDF Reader
+    libsForQt5.okular
   ];
 }

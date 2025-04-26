@@ -30,6 +30,7 @@
         ./packages/gui/communication.nix
         ./packages/gui/utilities.nix
 
+        ./services/dunst.nix
         ./services/picom.nix
         ./services/syncthing.nix
         ./services/gpg-agent.nix

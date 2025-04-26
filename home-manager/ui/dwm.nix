@@ -14,10 +14,8 @@ in
     packages = with pkgs; [
       dwm
       dwmblocks
-
       dmenu
-      dunst # notification daemon
-      libnotify # includes notify-send
+
       scrot # for takin screenshots
       slock # X screen locker
     ];

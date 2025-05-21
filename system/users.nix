@@ -3,7 +3,7 @@
   users.users.rugu = {
     isNormalUser = true;
     description = "rugu";
-    extraGroups = [ "networkmanager" "wheel" "audio" "sound" "video" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "audio" "sound" "video" "docker" "libvirtd"];
     packages = with pkgs; [];
     shell = pkgs.fish;
   };

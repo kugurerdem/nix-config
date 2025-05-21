@@ -7,6 +7,7 @@
     ./bluetooth.nix
     ./gnome.nix
     ./ld.nix
+    ./vm.nix
   ];
 
   # Bootloader.

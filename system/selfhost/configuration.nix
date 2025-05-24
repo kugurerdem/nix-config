@@ -6,12 +6,15 @@
     ./freshrss.nix
     ./readeck.nix
 
-    # 
-    ./syncthing.nix
-    ./nextcloud.nix
-    ./vaultwarden.nix
+    ./ssl-nginx.nix
+
+    # ./syncthing.nix
+    # ./nextcloud.nix
+    # ./vaultwarden.nix
   ];
 
+# public vs. private behaviour
+# domain'i public ise SSL sertifikasi otomatik olmali
   myModules.freshrss = {
     enable = true;
     adminPassword = "s3cr3t";
@@ -23,6 +26,26 @@
     port = 9000;
     domain = "readeck.local";
     secretKey = "READECK_SECRET_KEY=mysecretvalue";
+  };
+  
+  networking.extraHosts = ''
+  127.0.0.1 rss.local
+  127.0.0.1 readeck.local
+  '';
+
+  services.nginx = {
+    enable = true;
+    defaultHTTPListenPort = 8123;
+  };
+
+  myModules.sslNginx = {
+    enable = false;
+    useACME = true;
+    # You can also use custom certificates, if you want. But be sure to set
+    # useACME to false if you decide to do it that way.
+    # sslCertificate = /etc/ssl/mycert.pem;
+    # sslCertificateKey = /etc/ssl/private/mycert-key.pem;
+    domains = [ "rss.local" "readeck.local" ];
   };
 
   # Bootloader.
@@ -49,8 +72,6 @@
     desktopManager.gnome.enable = true;
   }; 
 
-  virtualisation.docker.enable = true;
-
   users.users.selfhost = {
     isNormalUser = true;
     description = "selfhost";
@@ -64,8 +85,10 @@
 
   environment.systemPackages = with pkgs; [
     firefox
+    git
   ];
 
+  # move it to a more general file
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -81,11 +104,6 @@
         set clipboard=unnamedplus
         '';
     };
-  };
-
-  services.nginx = {
-    enable = true;
-    defaultHTTPListenPort = 8123;
   };
 
   system.stateVersion = "24.11";

@@ -33,7 +33,5 @@ in {
       baseUrl = cfg.domain;
       authType = "form";
     };
-
-    networking.extraHosts = "127.0.0.1 ${cfg.domain}";
   };
 }

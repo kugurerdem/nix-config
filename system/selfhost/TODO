@@ -1,5 +1,0 @@
-- Modularization
-  - domain turune gore SSL sertifikasi olusturmak ya da /etc/hosts'a eklemek
-    SSL sertifikasi nginx tarafinda uretilmeli, hepsinin onunde nginx var
-- Passwords should be secure, /nix/store'da world readable olmasinlar (agenix)
-- goatcounter servisi de eklenmeli

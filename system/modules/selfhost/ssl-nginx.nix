@@ -3,9 +3,9 @@
 with lib;
 
 let
-  cfg = config.myModules.sslNginx;
+  cfg = config.DomainstToCertifyForNginx;
 in {
-  options.myModules.sslNginx = {
+  options.DomainstToCertifyForNginx = {
     enable = mkEnableOption "Enable the SSL Nginx module";
 
     useACME = mkOption {
@@ -34,11 +34,6 @@ in {
 
   config = mkIf cfg.enable {
     services.nginx.enable = true;
-
-    security.acme = mkIf cfg.useACME {
-      acceptTerms = true;
-      defaults.email = "your-email@example.com"; # ⚠️ Replace or expose via config
-    };
 
     services.nginx.virtualHosts = builtins.listToAttrs (
       map (domain: {

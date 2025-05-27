@@ -19,12 +19,5 @@ in {
       baseUrl = cfg.domain;
       authType = "form";
     };
-
-    services.nginx.virtualHosts.${cfg.domain} = {
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.freshrss.port}";
-        proxyWebsockets = true;
-      };
-    };
   };
 }

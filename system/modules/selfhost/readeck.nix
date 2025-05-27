@@ -18,7 +18,7 @@ in {
         main.secret_key = builtins.readFile /etc/secrets/readeck-secret;
         server = {
           base_url = cfg.domain;
-          host = "0.0.0.0";
+          host = "127.0.0.1";
           port = 9000;
         };
       };

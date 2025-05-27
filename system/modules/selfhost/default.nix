@@ -7,48 +7,16 @@
  in {
    options = {
      selfhosting = {
-       deployment = {
-         type = mkOption {
-           type = types.enum [ "local" "production" ];
-           default = "local";
-           description = "Type of deployment - local or production";
-         };
-       };
-       services = {
-         freshrss = {
-           enable = mkEnableOption "Enable FreshRSS service";
-           domain = mkOption {
-             type = types.str;
-             description = "Domain for FreshRSS";
-           };
-         };
-         readeck = {
-           enable = mkEnableOption "Enable Readeck service";
-           domain = mkOption {
-             type = types.str;
-             description = "Domain for Readeck";
-           };
-         };
-         syncthing = {
-           enable = mkEnableOption "Enable Syncthing service";
-           domain = mkOption {
-             type = types.str;
-             description = "Domain for Syncthing";
-           };
-         };
-         nextcloud = {
-           enable = mkEnableOption "Enable Nextcloud service";
-           domain = mkOption {
-             type = types.str;
-             description = "Domain for Nextcloud";
-           };
-         };
+       enable = lib.mkEnableOption "Enable self-hosting services";
+       deploymentType = mkOption {
+         type = types.enum [ "local" "production" ];
+         default = "local";
+         description = "Type of deployment - local or production";
        };
      };
    };
 
-   config = mkIf (cfg.services.freshrss.enable || cfg.services.readeck.enable ||
-                  cfg.services.syncthing.enable || cfg.services.nextcloud.enable) {
+   config = mkIf (cfg.enable) {
 
      networking.extraHosts = mkIf (cfg.deployment.type == "local") ''
        127.0.0.1 ${cfg.services.freshrss.domain}

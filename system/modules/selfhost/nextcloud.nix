@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.selfhosting.nextcloud;
+  cfg = config.selfhosting.services.nextcloud;
 in {
-  options.selfhosting.nextcloud = {
+  options.selfhosting.services.nextcloud = {
     enable = lib.mkEnableOption "Nextcloud service";
     domain = lib.mkOption {
       type = lib.types.str;

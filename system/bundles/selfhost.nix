@@ -8,22 +8,22 @@
     ../modules/selfhost/ssl-nginx.nix
   ];
 
-  selfhosting = {
+  selfhosting.services = {
     freshrss = {
       enable = true;
       domain = "freshrss.local";
     };
-    
+
     readeck = {
       enable = true;
       domain = "readeck.local";
     };
-    
+
     syncthing = {
       enable = true;
       domain = "syncthing.local";
     };
-    
+
     nextcloud = {
       enable = true;
       domain = "nextcloud.local";
@@ -47,10 +47,10 @@
     useACME = true;
     acmeEmail = "ugur@rugu.dev";
     domains = [
-      config.selfhosting.freshrss.domain
-      config.selfhosting.readeck.domain
-      config.selfhosting.syncthing.domain
-      config.selfhosting.nextcloud.domain
+      config.selfhosting.services.freshrss.domain
+      config.selfhosting.services.readeck.domain
+      config.selfhosting.services.syncthing.domain
+      config.selfhosting.services.nextcloud.domain
     ];
   };
 }

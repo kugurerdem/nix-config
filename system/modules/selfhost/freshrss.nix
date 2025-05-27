@@ -1,8 +1,8 @@
 { config, lib, ... }:
 let
-  cfg = config.selfhosting.freshrss;
+  cfg = config.selfhosting.services.freshrss;
 in {
-  options.selfhosting.freshrss = {
+  options.selfhosting.services.freshrss = {
     enable = lib.mkEnableOption "FreshRSS service";
     domain = lib.mkOption {
       type = lib.types.str;

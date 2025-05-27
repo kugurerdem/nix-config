@@ -1,8 +1,8 @@
 { config, lib, ... }:
 let
-  cfg = config.selfhosting.readeck;
+  cfg = config.selfhosting.services.readeck;
 in {
-  options.selfhosting.readeck = {
+  options.selfhosting.services.readeck = {
     enable = lib.mkEnableOption "Readeck service";
     domain = lib.mkOption {
       type = lib.types.str;

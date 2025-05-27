@@ -1,8 +1,8 @@
 { config, lib, ... }:
 let
-  cfg = config.selfhosting.syncthing;
+  cfg = config.selfhosting.services.syncthing;
 in {
-  options.selfhosting.syncthing = {
+  options.selfhosting.services.syncthing = {
     enable = lib.mkEnableOption "Syncthing service";
     domain = lib.mkOption {
       type = lib.types.str;

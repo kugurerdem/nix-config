@@ -3,9 +3,9 @@
 with lib;
 
 let
-  cfg = config.DomainstToCertifyForNginx;
+  cfg = config.DomainsToCertifyForNginx;
 in {
-  options.DomainstToCertifyForNginx = {
+  options.DomainsToCertifyForNginx = {
     enable = mkEnableOption "Enable the SSL Nginx module";
 
     useACME = mkOption {
@@ -30,10 +30,21 @@ in {
       type = types.listOf types.str;
       description = "List of domains to configure with SSL.";
     };
+
+    acmeEmail = mkOption {
+      type = types.str;
+      default = "example@example.com";
+      description = "The email that will be used in ACME verification";
+    };
   };
 
   config = mkIf cfg.enable {
     services.nginx.enable = true;
+
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = cfg.acmeEmail;
+    };
 
     services.nginx.virtualHosts = builtins.listToAttrs (
       map (domain: {

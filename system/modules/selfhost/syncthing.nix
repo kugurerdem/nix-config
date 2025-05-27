@@ -12,7 +12,7 @@
       guiAddress = lib.mkDefault "127.0.0.1:8384";
       settings.gui = lib.mkDefault {
         user = "admin";
-        password = builtins.readFile /run/secrets/syncthing-password;
+        password = builtins.readFile /etc/secrets/syncthing-password;
       };
     };
 

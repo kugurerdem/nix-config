@@ -2,7 +2,8 @@
   imports = [ ../modules/selfhost ];
 
   selfhosting = {
-    deployment = "local";
+    enable = true;
+    deploymentType = "local";
     services = {
       freshrss = {
         enable = true;

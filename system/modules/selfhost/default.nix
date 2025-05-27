@@ -5,6 +5,15 @@
  let
    cfg = config.selfhosting;
  in {
+    imports = [
+      ./freshrss.nix
+      ./nextcloud.nix
+      ./readeck.nix
+      ./syncthing.nix
+
+      ./ssl-nginx.nix
+    ];
+
    options = {
      selfhosting = {
        enable = lib.mkEnableOption "Enable self-hosting services";
@@ -17,15 +26,14 @@
    };
 
    config = mkIf (cfg.enable) {
-
-     networking.extraHosts = mkIf (cfg.deployment.type == "local") ''
+     networking.extraHosts = mkIf (cfg.deploymentType == "local") ''
        127.0.0.1 ${cfg.services.freshrss.domain}
        127.0.0.1 ${cfg.services.readeck.domain}
        127.0.0.1 ${cfg.services.syncthing.domain}
        127.0.0.1 ${cfg.services.nextcloud.domain}
      '';
 
-     DomainsToCertifyForNginx = mkIf (cfg.deployment.type == "production") {
+     DomainsToCertifyForNginx = mkIf (cfg.deploymentType == "production") {
        enable = true;
        useACME = true;
        acmeEmail = "ugur@rugu.dev";

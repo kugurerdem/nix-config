@@ -1,22 +1,27 @@
-{ config, lib, ... }: {
-  options = {
-    services.syncthing.guiDomain = lib.options.mkOption {
+{ config, lib, ... }:
+let
+  cfg = config.selfhosting.syncthing;
+in {
+  options.selfhosting.syncthing = {
+    enable = lib.mkEnableOption "Syncthing service";
+    domain = lib.mkOption {
       type = lib.types.str;
       default = "syncthing.local";
+      description = "Domain for Syncthing Web GUI";
     };
   };
-  
-  config = {
+
+  config = lib.mkIf cfg.enable {
     services.syncthing = {
       enable = true;
-      guiAddress = lib.mkDefault "127.0.0.1:8384";
-      settings.gui = lib.mkDefault {
+      guiAddress = "127.0.0.1:8384";
+      settings.gui = {
         user = "admin";
         password = builtins.readFile /etc/secrets/syncthing-password;
       };
     };
 
-    services.nginx.virtualHosts.${config.services.syncthing.guiDomain} = {
+    services.nginx.virtualHosts.${cfg.domain} = {
       locations."/" = {
         proxyPass = "http://${config.services.syncthing.guiAddress}";
         proxyWebsockets = true;

@@ -1,30 +1,30 @@
-{lib, ...}:
-  let cfg = options.selfhosting.freshrss;
-in
-{
-  options.freshrss = {
-    enable = lib.mkEnableOption "FreshRSS";
+{ config, lib, ... }:
+let
+  cfg = config.selfhosting.freshrss;
+in {
+  options.selfhosting.freshrss = {
+    enable = lib.mkEnableOption "FreshRSS service";
     domain = lib.mkOption {
       type = lib.types.str;
       default = "freshrss.local";
-      description = "Base URL for FreshRSS instance.";
+      description = "Base URL for FreshRSS instance";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     services.freshrss = {
-      enable = lib.mkEnableOption "FreshRSS service";
-      defaultUser = lib.mkDefault "admin";
-      passwordFile = lib.mkDefault "/etc/secrets/freshrss-password";
-      baseUrl = lib.mkDefault "freshrss.local";
-      authType = lib.mkDefault "form";
+      enable = true;
+      defaultUser = "admin";
+      passwordFile = "/etc/secrets/freshrss-password";
+      baseUrl = cfg.domain;
+      authType = "form";
+    };
+
+    services.nginx.virtualHosts.${cfg.domain} = {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString config.services.freshrss.port}";
+        proxyWebsockets = true;
+      };
     };
   };
-  # services.freshrss = {
-  #   enable = true;
-  #   defaultUser = "admin";
-  #   passwordFile = lib.mkDefault /etc/secrets/freshrss-password;
-  #   baseUrl = lib.mkDefault "freshrss.local";
-  #   authType = "form";
-  # };
 }

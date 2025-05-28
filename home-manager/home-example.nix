@@ -18,6 +18,7 @@
         ./programs/feh.nix
         ./programs/gpg.nix
         ./programs/subversion.nix
+        ./programs/zellij.nix
 
         ./packages/docker.nix
         ./packages/postgres.nix

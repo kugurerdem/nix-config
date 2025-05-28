@@ -59,6 +59,5 @@ in
     killall
 
     customPkgs.neovim
-    customPkgs.zellij
   ];
 }

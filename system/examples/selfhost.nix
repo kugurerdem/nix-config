@@ -2,28 +2,28 @@
   imports = [ ../modules/selfhost ];
 
   selfhosting = {
-    enable = true;
-    deploymentType = "local";
-    services = {
-      freshrss = {
-        enable = true;
-        domain = "freshrss.local";
-      };
+    freshrss = {
+      enable = true;
+      domain = "freshrss.local";
+      withSSLCert = false;
+    };
 
-      readeck = {
-        enable = true;
-        domain = "readeck.local";
-      };
+    readeck = {
+      enable = true;
+      domain = "readeck.local";
+      withSSLCert = false;
+    };
 
-      syncthing = {
-        enable = true;
-        domain = "syncthing.local";
-      };
+    syncthing = {
+      enable = true;
+      domain = "syncthing.local";
+      withSSLCert = false;
+    };
 
-      nextcloud = {
-        enable = true;
-        domain = "nextcloud.local";
-      };
+    nextcloud = {
+      enable = true;
+      domain = "nextcloud.local";
+      withSSLCert = false;
     };
   };
 }

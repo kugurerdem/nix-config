@@ -1,13 +1,18 @@
 { config, lib, ... }:
 let
-  cfg = config.selfhosting.services.freshrss;
+  cfg = config.selfhosting.freshrss;
 in {
-  options.selfhosting.services.freshrss = {
+  options.selfhosting.freshrss = {
     enable = lib.mkEnableOption "FreshRSS service";
     domain = lib.mkOption {
       type = lib.types.str;
       default = "freshrss.local";
       description = "Base URL for FreshRSS instance";
+    };
+    withSSLCert = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Whether to use a self-signed SSL certificate for Nextcloud";
     };
   };
 
@@ -16,7 +21,8 @@ in {
       enable = true;
       defaultUser = "admin";
       passwordFile = "/etc/secrets/freshrss-password";
-      baseUrl = cfg.domain;
+      baseUrl = "${if cfg.withSSLCert then "https" else "http"}://${cfg.domain}";
+      virtualHost = cfg.domain;
       authType = "form";
     };
   };

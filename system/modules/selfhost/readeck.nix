@@ -1,13 +1,18 @@
 { config, lib, ... }:
 let
-  cfg = config.selfhosting.services.readeck;
+  cfg = config.selfhosting.readeck;
 in {
-  options.selfhosting.services.readeck = {
+  options.selfhosting.readeck = {
     enable = lib.mkEnableOption "Readeck service";
     domain = lib.mkOption {
       type = lib.types.str;
       default = "readeck.local";
       description = "Domain for Readeck instance";
+    };
+    withSSLCert = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Whether to use a self-signed SSL certificate for Nextcloud";
     };
   };
 

@@ -10,6 +10,7 @@
      cfg.readeck
      cfg.syncthing
      cfg.nextcloud
+     cfg.vaultwarden
    ];
  in {
     imports = [
@@ -17,6 +18,7 @@
       ./nextcloud.nix
       ./readeck.nix
       ./syncthing.nix
+      ./vaultwarden.nix
     ];
 
    config = {

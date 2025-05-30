@@ -5,6 +5,7 @@ in {
   options.selfhosting.vaultwarden = {
     enable = lib.mkEnableOption "VaultWarden service";
     domain = lib.mkOption {
+      default = "vaultwarden.local";
       type = lib.types.str;
       description = "Base URL for the service";
     };

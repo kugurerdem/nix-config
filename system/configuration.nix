@@ -8,7 +8,22 @@
     ./gnome.nix
     ./ld.nix
     ./vm.nix
+
+    ./modules/selfhost
   ];
+
+  selfhosting = {
+    # vaultwarden = {
+    #   enable = true;
+    #   domain = "vaultwarden.local";
+    #   withSSLCert = false;
+    # };
+    goatcounter = {
+      enable = true;
+      domain = "goatcounter.local";
+      withSSLCert = false;
+    };
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -98,6 +113,15 @@
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
+  };
+
+  systemd.services.test = {
+    description = "Test Service";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.python3}/bin/python3 -m http.server 5555";
+    };
   };
 
   system.stateVersion = "24.05";

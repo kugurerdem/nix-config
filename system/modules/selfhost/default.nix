@@ -42,10 +42,5 @@
         (builtins.filter (service: service.withSSLCert) _services)
       );
     };
-
-    security.acme = {
-      acceptTerms = true;
-      defaults.email = "example@example.com";
-    };
    };
  }

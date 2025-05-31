@@ -26,4 +26,9 @@
       withSSLCert = false;
     };
   };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "ugur@rugu.dev";
+  };
 }

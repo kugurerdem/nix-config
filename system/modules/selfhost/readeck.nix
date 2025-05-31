@@ -22,7 +22,7 @@ in {
       settings = {
         main.secret_key = builtins.readFile /etc/secrets/readeck-secret;
         server = {
-          base_url = cfg.domain;
+          base_url = "${if cfg.withSSLCert then "https" else "http"}://${cfg.domain}";
           host = "127.0.0.1";
           port = 9000;
         };

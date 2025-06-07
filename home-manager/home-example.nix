@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
     imports = [
@@ -9,6 +9,7 @@
 
         ./fish.nix
         ./bash.nix
+        ./nixvim.nix
 
         ./programs/git.nix
         ./programs/alacritty.nix

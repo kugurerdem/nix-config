@@ -6,8 +6,6 @@ let
         waylandSupport = false;
         dmenuSupport = false;
     };
-
-    customPkgs = import ../../pkgs/default.nix {};
 in
 
 # TODO: This file can be further modularized
@@ -57,7 +55,5 @@ in
     android-tools
 
     killall
-
-    customPkgs.neovim
   ];
 }
